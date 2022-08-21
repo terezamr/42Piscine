@@ -6,12 +6,9 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 17:59:34 by mvicente          #+#    #+#             */
-/*   Updated: 2022/08/16 22:40:16 by mvicente         ###   ########.fr       */
+/*   Updated: 2022/08/18 16:09:29 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
-#include <unistd.h>
 
 int	check_in(char *base, int count)
 {
@@ -23,12 +20,12 @@ int	check_in(char *base, int count)
 		return (0);
 	while (base[i])
 	{
-		if (base[i] == '+' || base[i] == '-' || base[i] == 32 || base[i] == 12 || base[i] == 10 || base[i] == 13 || base[i] == 9 || base[i] == 11)
+		if (base[i] == 43 || base[i] == 45 || base[i] <= 32 || base[i] == 127)
 			return (0);
-		g = 0;
+		g = i + 1;
 		while (g < count)
 		{
-			if (base[i] == base[g] && i != g)
+			if (base[i] == base[g])
 				return (0);
 			g++;
 		}
@@ -55,6 +52,7 @@ int	mult(int potencia, int count)
 int	getindex(char dig, char *base)
 {
 	int	i;
+	int	flag;
 
 	i = 0;
 	while (base[i] != '\0')
@@ -65,36 +63,34 @@ int	getindex(char dig, char *base)
 		}
 		i++;
 	}
-	return (0);
+	flag = 'n';
+	return (flag);
 }
 
 int	to_dec(char *str, char *base, int i, int count)
 {
 	int		soma;
-	char	a[32];
-	int 	g;
+	char	a;
+	int		count_mi;
 
 	soma = 0;
-	g = 0;
+	count_mi = 0;
+	while ((str[i] == 43 || str[i] == 45) && str[i])
+	{
+		if (str[i] == 45)
+			count_mi++;
+		i++;
+	}
 	while (str[i])
 	{
-		a[g] = getindex(str[i], base);
-		printf(" indice %i\n", a[g]);
+		a = getindex(str[i], base);
+		if (a == 'n')
+			break ;
+		soma = (soma * count) + a;
 		i++;
-		g++;
 	}
-	printf(" i %i\n", i);
-	printf("g %i\n", g);
-	i = 0;
-	while (a[i] != '\0')
-	{
-		printf("a[i] %i\n", a[i]);
-		printf("g - 1 %i\n", g - 1);
-		printf("mult(g - 1) %i\n", mult(g - 1, count));
-		soma = soma + (a[i] * mult(g - 1, count));
-		i++;
-		g--;
-	}
+	if (count_mi % 2 == 1)
+		soma = soma * -1;
 	return (soma);
 }
 
@@ -116,32 +112,21 @@ int	ft_atoi_base(char *str, char *base)
 	{
 		return (0);
 	}
-	while (str[i] == 32 || str[i] == 12 || str[i] == 10 || str[i] == 13 || str[i] == 9 || str[i] == 11)
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
 	{
 		i++;
 	}
-	while (str[i] == 43 || str[i] == 45)
-	{
-		if (str[i] == 45)
-		{
-			count_mi++;
-		}
-		i++;
-	}
-	printf("count %i\n", count);
 	soma = to_dec(str, base, i, count);
 	return (soma);
-//	if (count_mi % 2 == 1)
-//	{
-//		number_f = number_f * -1;
-//	}
 }
 
+/*
+#include <stdio.h>
 int	main(void)
 {
 	int	b;
-	char a[] = "     ---+-+1001";
-	b = ft_atoi_base(a, "0123456789ABCDEF");
+	char a[] = "     ---+-+-defababs1-ab-";
+	b = ft_atoi_base(a, "abcdef");
 	printf("soma %i", b);
 	return (0);
-}
+}*/

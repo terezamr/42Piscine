@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 12:32:29 by mvicente          #+#    #+#             */
-/*   Updated: 2022/08/16 17:02:33 by mvicente         ###   ########.fr       */
+/*   Updated: 2022/08/21 10:39:34 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,34 +15,6 @@
 void	ft_putchar(char c)
 {
 	write(1, &c, 1);
-}
-
-int	count_t(int nb2)
-{
-	int	tot;
-
-	tot = 1;
-	while (nb2 > 10)
-	{
-		nb2 = nb2 / 10;
-		tot++;
-	}
-	return (tot);
-}
-
-int	count_m(int tot)
-{
-	int	mult;
-	int	tot2;
-
-	tot2 = tot - 1;
-	mult = 1;
-	while (tot2 > 0)
-	{
-		mult = mult * 10;
-		tot2--;
-	}
-	return (mult);
 }
 
 void	ft_putnbr(int nb)
@@ -72,9 +44,10 @@ void	ft_putnbr(int nb)
 	}
 	ft_putnbr(nb % 10);
 }
-
+/*
+#include <stdio.h>
 int	main(void)
 {
-	ft_putnbr(2147483647);
+	ft_putnbr(-2147483648);
 	return (0);
-}
+}*/

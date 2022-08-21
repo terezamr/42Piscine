@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 15:32:36 by mvicente          #+#    #+#             */
-/*   Updated: 2022/08/16 19:55:32 by mvicente         ###   ########.fr       */
+/*   Updated: 2022/08/21 15:05:13 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,17 @@ int	check_in(char *base, int count)
 	int	g;
 
 	i = 0;
-	if (count <= 1)
-	{
+	if (count == 1 || base[0] == '\0')
 		return (0);
-	}
-	while (base[i])
+	while (base[i] != '\0')
 	{
-		if (base[i] == '+' || base[i] == '-')
-		{
+		if (base[i] == 43 || base[i] == 45 || base[i] <= 32 || base[i] == 127)
 			return (0);
-		}
-		g = 0;
+		g = i + 1;
 		while (g < count)
 		{
-			if (base[i] == base[g] && i != g)
-			{
+			if (base[i] == base[g])
 				return (0);
-			}
 			g++;
 		}
 		i++;
@@ -47,7 +41,7 @@ int	check_in(char *base, int count)
 	return (1);
 }
 
-void	ft_putnbr_base(int nbr, char *base)
+int	ft_strlen(char *base)
 {
 	int	count;
 
@@ -56,27 +50,38 @@ void	ft_putnbr_base(int nbr, char *base)
 	{
 		count++;
 	}
-	if (nbr < 0)
-	{
-		nbr = nbr * -1;
-		ft_putchar(45);
-	}
+	return (count);
+}
+
+void	ft_putnbr_base(int nbr, char *base)
+{
+	int				count;
+	unsigned char	*base_unsigned;
+	long int		number;
+
+	number = (long int) nbr;
+	base_unsigned = (unsigned char *)base;
+	count = ft_strlen(base);
 	if (check_in(base, count))
 	{
-		if (nbr <= count)
+		if (number < 0)
 		{
-			ft_putchar(base[nbr]);
+			number = number * -1;
+			ft_putchar(45);
 		}
-		else
+		if (number < count)
+			ft_putchar(base_unsigned[number]);
+		if (number >= count)
 		{
-			ft_putnbr_base(nbr / count, base);
-			ft_putnbr_base(nbr % count, base);
+			ft_putnbr_base(number / count, base);
+			ft_putnbr_base(number % count, base);
 		}
 	}
 }
 
+#include <stdio.h>
 int	main(void)
 {
-	ft_putnbr_base(-29, "abcdefghi");
+	ft_putnbr_base(210, "01");
 	return (0);
 }
