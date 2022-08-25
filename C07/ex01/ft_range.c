@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 11:01:28 by mvicente          #+#    #+#             */
-/*   Updated: 2022/08/20 11:00:06 by mvicente         ###   ########.fr       */
+/*   Updated: 2022/08/23 11:15:18 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,9 @@ int	*ft_range(int min, int max)
 	}
 	count = max - min;
 	i = 0;
-	sp = malloc(sizeof(int) * count);
+	sp = (int *)malloc(sizeof(int) * count);
 	if (!sp)
-	{
 		return (0);
-	}
 	while (i < count)
 	{
 		sp[i] = min;

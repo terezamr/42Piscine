@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 09:37:02 by mvicente          #+#    #+#             */
-/*   Updated: 2022/08/20 12:10:24 by mvicente         ###   ########.fr       */
+/*   Updated: 2022/08/25 12:25:56 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,83 +19,89 @@ int	str_len(char *str)
 
 	i = 0;
 	while (str[i] != 0)
-	{
 		i++;
-	}
 	return (i);
 }
 
-char	*ft_strcat(char *dest, char *src)
+char	*ft_strcpy(char *dest, char *src)
+{
+	int	index;
+
+	index = 0;
+	while (src[index])
+	{
+		dest[index] = src[index];
+		index++;
+	}
+	dest[index] = '\0';
+	return (dest);
+}
+
+int	get_len_tot(int size, char **strs, char *sep)
 {
 	int	i;
-	int	g;
-	int	h;
+	int	count;
+	int	tot;
 
 	i = 0;
-	g = 0;
-	while (dest[i])
+	count = 0;
+	while (i < size)
 	{
+		count = count + str_len(strs[i]);
+		count = count + str_len(sep);
 		i++;
 	}
-	h = i;
-	while (src[g])
-	{
-		dest[i] = src[g];
-		g++;
-		i++;
-	}
-	while (dest[i])
-	{
-		dest[i] = '\0';
-		i++;
-	}
-	return (dest);
+	count = count - str_len(sep);
+	tot = sizeof(char) * (count + 1);
+	return (tot);
 }
 
 char	*ft_strjoin(int size, char **strs, char *sep)
 {
 	char	*sp;
-	int		count;
 	int		i;
+	char	*d;
 
-	count = 0;
 	i = 0;
-	while (i < size)
-	{
-		count = count + str_len(strs[i]);
-		i++;
-	}
-	sp = malloc(sizeof(char) * (count + str_len(sep) * (size - 1)));
-	if (!sp)
-	{
+	if (!size)
+		return ((char *)malloc(sizeof(char)));
+	if (!strs || !sep)
 		return (0);
-	}
-	if (size == 0)
+	sp = (char *)malloc(get_len_tot(size, strs, sep));
+	if (!sp)
+		return (0);
+	d = sp;
+	while (i < size - 1)
 	{
-		return (sp);
-	}
-	i = 0;
-	while (i < size)
-	{
-		ft_strcat(sp, strs[i]);
-		if (i != size - 1)
-		{
-			ft_strcat(sp, sep);
-		}
+		ft_strcpy(d, strs[i]);
+		d = d + str_len(strs[i]);
+		ft_strcpy(d, sep);
+		d = d + str_len(sep);
 		i++;
 	}
+	ft_strcpy(d, strs[i]);
+	d = d + str_len(strs[i]);
+	*d = '\0';
 	return (sp);
 }
-/*
-#include <stdio.h>
-#include <stdlib.h>
 
 int	main(void)
 {
-	char	*a[] = {"hello", "world"};
-	char *b = "\\";
-	char *c;
+	char	**strs;
+	char	*separator;
+	char	*result;
+	int		size;
 
-	c = ft_strjoin(2, a, b);
-	printf("%s", c);
-}*/
+	size = 3;
+	strs = (char **)malloc(3 * sizeof(char *));
+	strs[0] = (char *)malloc(sizeof(char) * 5 + 1);
+	strs[1] = (char *)malloc(sizeof(char) * 7 + 1);
+	strs[2] = (char *)malloc(sizeof(char) * 14 + 1);
+	strs[0] = "Hello1";
+	strs[1] = "friend";
+	strs[2] = "you ar2e awesome";
+	separator = "5";
+	result = ft_strjoin(2, strs, separator);
+	printf("%s$\n", result);
+	free(result);
+}

@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 17:16:46 by mvicente          #+#    #+#             */
-/*   Updated: 2022/08/21 15:07:01 by mvicente         ###   ########.fr       */
+/*   Updated: 2022/08/22 08:44:55 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	ft_atoi(char *str)
 		number_f = number_f * -1;
 	return (number_f);
 }
-
+/*
 #include <stdio.h>
 
 int	main(void)
@@ -83,4 +83,4 @@ int	main(void)
 	b = ft_atoi(a);
 	printf("%i\n", b);
 	return (0);
-}
+}*/

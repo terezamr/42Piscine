@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 15:32:36 by mvicente          #+#    #+#             */
-/*   Updated: 2022/08/21 15:05:13 by mvicente         ###   ########.fr       */
+/*   Updated: 2022/08/24 20:29:49 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,6 @@ void	ft_putnbr_base(int nbr, char *base)
 #include <stdio.h>
 int	main(void)
 {
-	ft_putnbr_base(210, "01");
+	ft_putnbr_base(-8, "01");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 10:43:59 by mvicente          #+#    #+#             */
-/*   Updated: 2022/08/15 15:08:40 by mvicente         ###   ########.fr       */
+/*   Updated: 2022/08/23 14:28:43 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_strncmp(char *s1, char *s2, unsigned int n)
 	}
 	return (0);
 }
-/*
+
 #include <string.h>
 #include <stdio.h>
 
@@ -36,8 +36,8 @@ int	main(void)
 	int	c;
 	int d;
 
-	d = strncmp(a, b, 4);
-	c = ft_strncmp(a, b, 4);
+	d = strncmp(a, b, 3);
+	c = ft_strncmp(a, b, 3);
 	printf("%i %i", c, d);
 	return (0);
-}*/
+}

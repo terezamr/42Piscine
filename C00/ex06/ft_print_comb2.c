@@ -6,57 +6,43 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 12:32:29 by mvicente          #+#    #+#             */
-/*   Updated: 2022/08/08 20:49:00 by mvicente         ###   ########.fr       */
+/*   Updated: 2022/08/23 12:09:24 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	print(int a, int b, int c, int d)
+void	ft_putchar(char c)
 {
-	while (d < 58)
-	{
-		if (a + b < c + d)
-		{
-			write(1, &a, 1);
-			write(1, &b, 1);
-			write(1, " ", 1);
-			write(1, &c, 1);
-			write(1, &d, 1);
-			if (a != 57 || b != 56 || c != 57 || d != 57)
-			{
-				write(1, ", ", 2);
-			}
-		}		
-		d++;
-	}
+	write(1, &c, 1);
 }
 
 void	ft_print_comb2(void)
 {
-	char	a;
-	char	b;
-	char	c;
-	char	d;
+	int	a;
+	int	b;
 
-	a = 48;
-	b = 48;
-	c = 48;
-	d = 48;
-	while (a < 58)
+	a = -1;
+	while (a++ < 98)
 	{
-		while (b < 57)
+		b = a;
+		while (b++ < 99)
 		{
-			while (c < 58)
+			ft_putchar((a / 10) + '0');
+			ft_putchar((a % 10) + '0');
+			ft_putchar(' ');
+			ft_putchar((b / 10) + '0');
+			ft_putchar((b % 10) + '0');
+			if (a < 98)
 			{
-				print(a, b, c, d);
-				d = 48;
-				c++;
+				write(1, ", ", 2);
 			}
-			c = 48;
-			b++;
 		}
-		b = 48;
-		a++;
 	}
 }
+/*
+int	main(void)
+{
+	ft_print_comb2();
+	return (0);
+}*/

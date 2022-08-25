@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 10:43:59 by mvicente          #+#    #+#             */
-/*   Updated: 2022/08/16 19:49:28 by mvicente         ###   ########.fr       */
+/*   Updated: 2022/08/24 17:55:04 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ int	count(char *list)
 
 	i = 0;
 	while (list[i])
-	{
 		i++;
-	}
 	return (i);
 }
 
